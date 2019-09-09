@@ -6,6 +6,7 @@ import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 
 import commandPackage.Dice;
+import commandPackage.Echo;
 import commandPackage.GIFHelp;
 import commandPackage.GIFMain;
 import commandPackage.ServerInfo;
@@ -17,30 +18,27 @@ public class BotMain {
 
 	public static void main(String[] args) throws Exception {
 		
-		  JDA bot = new JDABuilder("NTg3ODI0MTA4ODU1NjIzNzEw.XQ9YFw.veOIZ0hPAJV0fZR-P-5u9pB7AkE").build();
-		  CommandClientBuilder builder = new CommandClientBuilder();
+		JDA bot = new JDABuilder("NTg3ODI0MTA4ODU1NjIzNzEw.XQ9YFw.veOIZ0hPAJV0fZR-P-5u9pB7AkE").build();
+		CommandClientBuilder builder = new CommandClientBuilder();
+		  	  
+		builder.setOwnerId("280286374337314816");
+		builder.setPrefix("+");
 		  
+		builder.addCommand(new GIFHelp());
+		builder.addCommand(new Dice());
+		builder.addCommand(new ServerInfo());
+		builder.addCommand(new Echo());
 		  
+		CommandClient client = builder.build();
 		  
-		  builder.setOwnerId("587824108855623710");
-		  builder.setPrefix("+");
+		bot.addEventListener(client);
+		bot.addEventListener(new GIFMain());		// EventListener for GIFMain
+//		bot.addEventListener(new HelpListener());		// UNUSED FOR NOW
 		  
-		  builder.addCommand(new GIFHelp());
-		  builder.addCommand(new Dice());
-		  builder.addCommand(new ServerInfo());
-		  
-		  CommandClient client = builder.build();
-		  
-		  bot.addEventListener(client);
-		  bot.addEventListener(new GIFMain());		// EventListener for GIFMain
-		  
-		  List<Guild> guild = bot.getGuilds();
-		  System.out.println("Server I'm in");
-		  for(int i = 0; i < guild.size(); i++) {
-			  System.out.println("GuildName: " + guild.get(i).getName() + " GuildId: " + guild.get(i).getId());
-		  }
-		  
-//		  bot.addEventListener(new HelpListener());		// UNUSED FOR NOW
+		List<Guild> guild = bot.getGuilds();
+		
+		System.out.println("Server I'm in");
+		for(int i = 0; i < guild.size(); i++)
+			System.out.println("GuildName: " + guild.get(i).getName() + " GuildId: " + guild.get(i).getId());
 	}
-
 }
