@@ -18,7 +18,7 @@ public class BotMain {
 
 	public static void main(String[] args) throws Exception {
 		
-		JDA bot = new JDABuilder("NTg3ODI0MTA4ODU1NjIzNzEw.XQ9YFw.veOIZ0hPAJV0fZR-P-5u9pB7AkE").build();
+		JDA bot = new JDABuilder("bot-login-token").build();
 		CommandClientBuilder builder = new CommandClientBuilder();
 		  	  
 		builder.setOwnerId("280286374337314816");
